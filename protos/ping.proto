@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package ping;
+
+message Ping {
+  bool ok = 1;
+}

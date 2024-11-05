@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package usersResponse;
+
+import "user.proto";
+
+message ResponseMeta {
+  required int32 page = 1;
+  required int32 total = 2;
+  required int32 pageSize = 3;
+}
+
+message UsersResponse {
+  required ResponseMeta meta = 1;
+  repeated user.User users = 2;
+}

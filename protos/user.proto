@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package user;
+
+message User {
+  required int64 id = 1;
+  required string username = 2;
+  optional string email = 3;
+  optional Status status = 4 [default = PROSPECT];
+
+  enum Status {
+    PROSPECT = 0;
+    ACTIVE = 1;
+    BLOCKED = 2;
+  }
+}
