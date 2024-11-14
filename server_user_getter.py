@@ -1,5 +1,6 @@
 import logging
 import random
+from collections.abc import Generator
 from concurrent.futures import ThreadPoolExecutor
 
 import grpc
@@ -35,22 +36,47 @@ class UserGetterServicer(user_service_pb2_grpc.UserGetterServicer):
             user=user,
         )
 
+    @classmethod
+    def get_random_user_from_username(
+        cls,
+        username: str,
+        force_id: int = 0,
+    ) -> user_pb2.User:
+        user = user_pb2.User(
+            id=force_id or random.randint(10, 100),
+            username=username,
+            email=f"{username}@example.com",
+            status=random.choice(user_pb2.User.Status.values()),
+        )
+        log.info("Generated user:\n%s", user)
+        return user
+
     def GetUserByUsername(
         self,
         request: user_service_pb2.UserRequestByUsername,
         context: grpc.ServicerContext,
     ) -> user_service_pb2.UserDetailsResponse:
         log.info("Requested user by username: %s", request.username)
-        user = user_pb2.User(
-            id=random.randint(10, 100),
-            username=request.username,
-            email=f"{request.username}@example.com",
-            status=random.choice(user_pb2.User.Status.values()),
-        )
+        user = self.get_random_user_from_username(request.username)
         log.info("Send user in response:\n%s", user)
         return user_service_pb2.UserDetailsResponse(
             user=user,
         )
+
+    def GetUsersMatchingUsername(
+        self,
+        request: user_service_pb2.UserRequestByUsername,
+        context: grpc.ServicerContext,
+    ) -> Generator[user_service_pb2.UserDetailsResponse, None, None]:
+        log.info("Requested matching users by username: %s", request.username)
+        for idx in range(1, random.randint(4, 8)):
+            user = self.get_random_user_from_username(
+                f"user-{request.username}-{idx:02d}",
+                force_id=idx,
+            )
+            yield user_service_pb2.UserDetailsResponse(
+                user=user,
+            )
 
 
 def serve() -> None:

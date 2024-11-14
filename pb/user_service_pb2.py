@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from . import user_pb2 as user__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12user-service.proto\x12\x0buserService\x1a\nuser.proto\"\x1d\n\x0fUserRequestById\x12\n\n\x02id\x18\x01 \x01(\x03\")\n\x15UserRequestByUsername\x12\x10\n\x08username\x18\x01 \x01(\t\"/\n\x13UserDetailsResponse\x12\x18\n\x04user\x18\x01 \x01(\x0b\x32\n.user.User2\xba\x01\n\nUserGetter\x12O\n\x0bGetUserById\x12\x1c.userService.UserRequestById\x1a .userService.UserDetailsResponse\"\x00\x12[\n\x11GetUserByUsername\x12\".userService.UserRequestByUsername\x1a .userService.UserDetailsResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12user-service.proto\x12\x0buserService\x1a\nuser.proto\"\x1d\n\x0fUserRequestById\x12\n\n\x02id\x18\x01 \x01(\x03\")\n\x15UserRequestByUsername\x12\x10\n\x08username\x18\x01 \x01(\t\"/\n\x13UserDetailsResponse\x12\x18\n\x04user\x18\x01 \x01(\x0b\x32\n.user.User2\xa0\x02\n\nUserGetter\x12O\n\x0bGetUserById\x12\x1c.userService.UserRequestById\x1a .userService.UserDetailsResponse\"\x00\x12[\n\x11GetUserByUsername\x12\".userService.UserRequestByUsername\x1a .userService.UserDetailsResponse\"\x00\x12\x64\n\x18GetUsersMatchingUsername\x12\".userService.UserRequestByUsername\x1a .userService.UserDetailsResponse\"\x00\x30\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -39,5 +39,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_USERDETAILSRESPONSE']._serialized_start=121
   _globals['_USERDETAILSRESPONSE']._serialized_end=168
   _globals['_USERGETTER']._serialized_start=171
-  _globals['_USERGETTER']._serialized_end=357
+  _globals['_USERGETTER']._serialized_end=459
 # @@protoc_insertion_point(module_scope)

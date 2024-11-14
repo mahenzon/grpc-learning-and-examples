@@ -44,6 +44,11 @@ class UserGetterStub(object):
                 request_serializer=user__service__pb2.UserRequestByUsername.SerializeToString,
                 response_deserializer=user__service__pb2.UserDetailsResponse.FromString,
                 _registered_method=True)
+        self.GetUsersMatchingUsername = channel.unary_stream(
+                '/userService.UserGetter/GetUsersMatchingUsername',
+                request_serializer=user__service__pb2.UserRequestByUsername.SerializeToString,
+                response_deserializer=user__service__pb2.UserDetailsResponse.FromString,
+                _registered_method=True)
 
 
 class UserGetterServicer(object):
@@ -61,6 +66,12 @@ class UserGetterServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetUsersMatchingUsername(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_UserGetterServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -71,6 +82,11 @@ def add_UserGetterServicer_to_server(servicer, server):
             ),
             'GetUserByUsername': grpc.unary_unary_rpc_method_handler(
                     servicer.GetUserByUsername,
+                    request_deserializer=user__service__pb2.UserRequestByUsername.FromString,
+                    response_serializer=user__service__pb2.UserDetailsResponse.SerializeToString,
+            ),
+            'GetUsersMatchingUsername': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetUsersMatchingUsername,
                     request_deserializer=user__service__pb2.UserRequestByUsername.FromString,
                     response_serializer=user__service__pb2.UserDetailsResponse.SerializeToString,
             ),
@@ -127,6 +143,33 @@ class UserGetter(object):
             request,
             target,
             '/userService.UserGetter/GetUserByUsername',
+            user__service__pb2.UserRequestByUsername.SerializeToString,
+            user__service__pb2.UserDetailsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetUsersMatchingUsername(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/userService.UserGetter/GetUsersMatchingUsername',
             user__service__pb2.UserRequestByUsername.SerializeToString,
             user__service__pb2.UserDetailsResponse.FromString,
             options,

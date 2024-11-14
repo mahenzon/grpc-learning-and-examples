@@ -6,8 +6,8 @@ __all__ = (
 import logging
 
 DEFAULT_LOG_FORMAT = (
-    # "[%(asctime)s.%(msecs)03d] %(module)10s:%(lineno)-3d %(levelname)-7s - %(message)s"
-    "%(module)10s:%(lineno)-3d %(levelname)-7s - %(message)s"
+    "[%(asctime)s.%(msecs)03d] %(module)10s:%(lineno)-3d %(levelname)-7s - %(message)s"
+    # "%(module)10s:%(lineno)-3d %(levelname)-7s - %(message)s"
 )
 
 

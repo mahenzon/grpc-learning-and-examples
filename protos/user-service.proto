@@ -8,6 +8,7 @@ import "user.proto";
 service UserGetter {
   rpc GetUserById (UserRequestById) returns (UserDetailsResponse) {}
   rpc GetUserByUsername (UserRequestByUsername) returns (UserDetailsResponse) {}
+  rpc GetUsersMatchingUsername (UserRequestByUsername) returns (stream UserDetailsResponse) {}
 }
 
 message UserRequestById {
