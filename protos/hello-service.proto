@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package helloService;
+
+import "hello.proto";
+
+
+service HelloService {
+  rpc multiHello (stream HelloRequest) returns (MultiHelloResponse) {}
+}
+
+message HelloRequest {
+  hello.Hello hello = 1;
+}
+
+message MultiHelloResponse {
+  string title = 1;
+  repeated hello.Hello greetings = 2;
+}

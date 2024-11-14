@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package hello;
+
+message Hello {
+  string text = 1;
+  optional Kind kind = 2;
+
+  enum Kind {
+    CORPO = 0;
+    STREET = 1;
+    THIRD = 2;
+  }
+}
