@@ -8,9 +8,11 @@ grpcio = "^1.67.1"
 
 [tool.poetry.group.dev.dependencies]
 grpcio-tools = "^1.67.1"
+mypy-protobuf = "^3.6.0"
 
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.13.0"
+grpc-stubs = "^1.53.0.5"
 
 [tool.mypy]
 strict = true
