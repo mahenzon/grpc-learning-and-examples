@@ -1,6 +1,7 @@
 import logging
 import random
 from collections.abc import Iterator
+from time import sleep
 
 import grpc
 
@@ -45,11 +46,24 @@ def send_many_greetings(stub: hello_service_pb2_grpc.HelloServiceStub) -> None:
     )
 
 
+def send_batch_greetings(stub: hello_service_pb2_grpc.HelloServiceStub) -> None:
+    greetings_count = random.randint(1, 6)
+    greetings_requests = create_many_greetings(greetings_count)
+    responses: Iterator[hello_service_pb2.HelloResponse] = (
+        # stream request
+        stub.batchHello(greetings_requests)
+    )
+    for response in responses:
+        sleep(1)
+        log.info("Got response %r", response.text)
+
+
 def run() -> None:
     log.info("Start")
     with grpc.insecure_channel("localhost:50051") as channel:
         stub = hello_service_pb2_grpc.HelloServiceStub(channel)
-        send_many_greetings(stub)
+        # send_many_greetings(stub)
+        send_batch_greetings(stub)
 
     log.info("Finish")
 

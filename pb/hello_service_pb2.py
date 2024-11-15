@@ -22,7 +22,7 @@ from . import hello_pb2 as hello__pb2
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
-    b'\n\x13hello-service.proto\x12\x0chelloService\x1a\x0bhello.proto"+\n\x0cHelloRequest\x12\x1b\n\x05hello\x18\x01 \x01(\x0b\x32\x0c.hello.Hello"D\n\x12MultiHelloResponse\x12\r\n\x05title\x18\x01 \x01(\t\x12\x1f\n\tgreetings\x18\x02 \x03(\x0b\x32\x0c.hello.Hello2^\n\x0cHelloService\x12N\n\nmultiHello\x12\x1a.helloService.HelloRequest\x1a .helloService.MultiHelloResponse"\x00(\x01\x62\x06proto3'
+    b'\n\x13hello-service.proto\x12\x0chelloService\x1a\x0bhello.proto"+\n\x0cHelloRequest\x12\x1b\n\x05hello\x18\x01 \x01(\x0b\x32\x0c.hello.Hello"D\n\x12MultiHelloResponse\x12\r\n\x05title\x18\x01 \x01(\t\x12\x1f\n\tgreetings\x18\x02 \x03(\x0b\x32\x0c.hello.Hello"\x1d\n\rHelloResponse\x12\x0c\n\x04text\x18\x01 \x01(\t2\xab\x01\n\x0cHelloService\x12N\n\nmultiHello\x12\x1a.helloService.HelloRequest\x1a .helloService.MultiHelloResponse"\x00(\x01\x12K\n\nbatchHello\x12\x1a.helloService.HelloRequest\x1a\x1b.helloService.HelloResponse"\x00(\x01\x30\x01\x62\x06proto3'
 )
 
 _globals = globals()
@@ -34,6 +34,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
     _globals["_HELLOREQUEST"]._serialized_end = 93
     _globals["_MULTIHELLORESPONSE"]._serialized_start = 95
     _globals["_MULTIHELLORESPONSE"]._serialized_end = 163
-    _globals["_HELLOSERVICE"]._serialized_start = 165
-    _globals["_HELLOSERVICE"]._serialized_end = 259
+    _globals["_HELLORESPONSE"]._serialized_start = 165
+    _globals["_HELLORESPONSE"]._serialized_end = 194
+    _globals["_HELLOSERVICE"]._serialized_start = 197
+    _globals["_HELLOSERVICE"]._serialized_end = 368
 # @@protoc_insertion_point(module_scope)

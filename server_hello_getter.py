@@ -2,6 +2,7 @@ import logging
 import random
 from collections.abc import Generator, Iterator
 from concurrent.futures import ThreadPoolExecutor
+from time import sleep
 
 import grpc
 
@@ -31,6 +32,21 @@ class HelloServiceServicer(hello_service_pb2_grpc.HelloServiceServicer):
             title=f"This is response for multi Hello, received {len(greetings)} greetings.",
             greetings=greetings,
         )
+
+    def batchHello(
+        self,
+        request_iterator: Iterator[hello_service_pb2.HelloRequest],
+        context: grpc.ServicerContext,
+    ) -> Iterator[hello_service_pb2.HelloResponse]:
+        log.info("Got batch request for hello %s", request_iterator)
+        # yield hello_service_pb2.HelloResponse(text="One line in streaming response")
+        for request in request_iterator:
+            sleep(1)
+            hello_request = f"{request.hello.text} - {request.hello.kind}"
+            log.info("The request for batch Hello %r", hello_request)
+            yield hello_service_pb2.HelloResponse(
+                text=f"Response for {hello_request!r}",
+            )
 
 
 def serve() -> None:

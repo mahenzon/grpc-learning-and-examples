@@ -7,6 +7,7 @@ import "hello.proto";
 
 service HelloService {
   rpc multiHello (stream HelloRequest) returns (MultiHelloResponse) {}
+  rpc batchHello (stream HelloRequest) returns (stream HelloResponse) {}
 }
 
 message HelloRequest {
@@ -16,4 +17,8 @@ message HelloRequest {
 message MultiHelloResponse {
   string title = 1;
   repeated hello.Hello greetings = 2;
+}
+
+message HelloResponse {
+  string text = 1;
 }
